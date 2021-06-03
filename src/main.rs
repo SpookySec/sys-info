@@ -75,4 +75,5 @@ fn main() {
     //// EXTRA INFORMATION
     println!("\n\n-=-= OTHER INFORMATION =-=-");
     println!("Is ASLR Enabled? : {}", if aslr() {"Yes"} else {"No"});
+    println!("PATH: {}", env::var("PATH").unwrap_or_default())
 }

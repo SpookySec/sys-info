@@ -34,7 +34,7 @@ pub fn aslr() -> bool {
 }
 
 // TODO: Implement this
+#[allow(dead_code)]
 pub fn virtual_machine() -> bool {
-    let cpu_info = read_to_string("/proc/cpuinfo");
     false
 }
