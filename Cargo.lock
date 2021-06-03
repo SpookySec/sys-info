@@ -38,15 +38,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "cpuid"
-version = "0.1.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a0c4b055219ace68cabfbb8071c4aad068565d11b67e092e151b17b9fd3bdba9"
-dependencies = [
- "libc",
-]
-
-[[package]]
 name = "libc"
 version = "0.2.95"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -108,7 +99,6 @@ name = "sysinfo"
 version = "0.1.0"
 dependencies = [
  "chrono",
- "cpuid",
  "nix",
  "sys-info",
 ]
