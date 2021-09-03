@@ -1,4 +1,6 @@
 use std::fs::read_to_string;
+use std::path::Path;
+use std::process::Command;
 
 pub fn battery_amount() -> String {
     match read_to_string("/sys/class/power_supply/BAT0/capacity") {
@@ -37,4 +39,44 @@ pub fn aslr() -> bool {
 #[allow(dead_code)]
 pub fn virtual_machine() -> bool {
     false
+}
+
+pub fn in_docker() -> bool {
+    let docker_env = Path::new("/.dockerenv");
+
+    docker_env.exists()
+}
+
+pub fn crontab() -> String {
+    String::from_utf8(Command::new("crontab").arg("-l").output().unwrap().stdout)
+        .unwrap()
+        .trim()
+        .to_owned()
+}
+
+pub fn timers() -> String {
+    String::from_utf8(
+        Command::new("systemctl")
+            .arg("list-timers")
+            .arg("--all")
+            .output()
+            .unwrap()
+            .stdout
+    )
+    .unwrap()
+    .trim()
+    .to_owned()
+}
+
+pub fn sysd_services() -> String {
+    String::from_utf8(
+        Command::new("systemctl")
+            .arg("list-unit-files")
+            .output()
+            .unwrap()
+            .stdout
+    )
+    .unwrap()
+    .trim()
+    .to_owned()
 }

@@ -74,6 +74,14 @@ fn main() {
 
     //// EXTRA INFORMATION
     println!("\n\n-=-= OTHER INFORMATION =-=-");
-    println!("Is ASLR Enabled? : {}", if aslr() {"Yes"} else {"No"});
-    println!("PATH: {}", env::var("PATH").unwrap_or_default())
+    println!("Is ASLR Enabled? : {}", if aslr() { "Yes" } else { "No" });
+    println!("PATH: {}", env::var("PATH").unwrap_or_default());
+    println!("Docker? : {}", if in_docker() { "yes" } else { "No" });
+
+
+    //// TIMERS, CRON JOBS, SERVICES
+    println!("\n\n-=-= TIMERS, CRONJOBS, SERVICES =-=-");
+    println!("Cron Jobs: {}\n\n", if crontab().is_empty() {String::from("No cronjobs for current user.")} else {crontab()} );
+    println!("Timers: \n{}\n\n", timers());
+    println!("Services: \n{}\n\n", sysd_services());
 }
